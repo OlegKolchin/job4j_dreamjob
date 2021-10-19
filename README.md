@@ -1,0 +1,2 @@
+[![Build Status](https://app.travis-ci.com/OlegKolchin/job4j_dreamjob.svg?branch=master)](https://app.travis-ci.com/OlegKolchin/job4j_dreamjob)
+[![codecov](https://codecov.io/gh/OlegKolchin/job4j_dreamjob/branch/master/graph/badge.svg?token=W8BPVL1RA7)](https://codecov.io/gh/OlegKolchin/job4j_dreamjob)
