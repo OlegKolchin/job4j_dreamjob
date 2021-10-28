@@ -62,4 +62,8 @@ public class Store {
     public Post findById(int id) {
         return posts.get(id);
     }
+
+    public boolean deleteCandidateById(int id) {
+        return candidates.remove(id) != null;
+    }
 }
