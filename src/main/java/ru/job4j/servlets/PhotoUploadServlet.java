@@ -14,23 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PhotoUploadServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<String> images = new ArrayList<>();
-        for (File name : new File("d:\\images\\").listFiles()) {
-            images.add(name.getName());
-        }
-        req.setAttribute("images", images);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/photoupload.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    @Override
+        @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletContext servletContext = this.getServletConfig().getServletContext();
         File repository = (File) servletContext.getAttribute("javax.servlet.context.tem pdir");
@@ -44,7 +33,7 @@ public class PhotoUploadServlet extends HttpServlet {
             }
             for (FileItem item : items) {
                 if (!item.isFormField()) {
-                    File file = new File(folder + File.separator + item.getName());
+                    File file = new File(folder + File.separator + id + ".png");
                     try (FileOutputStream out = new FileOutputStream(file)) {
                         out.write(item.getInputStream().readAllBytes());
                     }
@@ -53,6 +42,6 @@ public class PhotoUploadServlet extends HttpServlet {
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/candidates.do");
     }
 }
