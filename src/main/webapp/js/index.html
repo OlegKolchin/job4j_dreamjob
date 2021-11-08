@@ -16,6 +16,27 @@
     <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Hello, world!</title>
+    <script>
+        function validate() {
+            var name = $('#name').val();
+            if (name == '') {
+                alert($('#name').attr('title'));
+            };
+            var surname = $('#surname').val();
+            if (surname == '') {
+                alert($('#surname').attr('title'));
+            };
+            var gender = $('#gender').val();
+            if (gender == '') {
+                alert($('#gender').attr('title'));
+            };
+            var dsc = $('#dsc').val();
+            if (dsc == '') {
+                alert($('#dsc').attr('title'));
+            };
+            return false;
+        }
+    </script>
 </head>
 <body>
 <h1></h1>
@@ -25,19 +46,19 @@
     <form>
         <div class="row">
             <div class="col">
-                <input class="form-control" placeholder="Имя" type="text">
+                <input class="form-control" id="name" placeholder="Имя" title="Enter name" type="text">
             </div>
             <div class="col">
-                <input class="form-control" placeholder="Фамилия" type="text">
+                <input class="form-control" id="surname" placeholder="Фамилия" title="Enter surname" type="text">
             </div>
             <div class="col">
-                <input class="form-control" placeholder="Пол" type="text">
+                <input class="form-control" id="gender" placeholder="Пол" title="Enter gender" type="text">
             </div>
             <div class="col">
-                <input class="form-control" placeholder="Описание" type="text">
+                <input class="form-control" id="dsc" placeholder="Описание" title="Enter description" type="text">
             </div>
             <div class="col">
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <button class="btn btn-primary" onclick="return validate();" type="submit">Submit</button>
             </div>
         </div>
     </form>
