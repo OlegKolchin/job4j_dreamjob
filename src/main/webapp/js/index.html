@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,6 +37,18 @@
             return false;
         }
     </script>
+    <script>
+        function addRow() {
+            const name = $('#name').val();
+            const surname = $('#surname').val();
+            const gender = $('#gender').val();
+            const dsc = $('#dsc').val();
+            $('#myTable tr:last').after('<tr>' +
+                '<td>' + name +'</td>' +
+                '<td>' + surname +'</td>' +
+                '<td>' + gender +'</td><td>' + dsc +'</td></tr>');
+        }
+    </script>
 </head>
 <body>
 <h1></h1>
@@ -58,12 +70,12 @@
                 <input class="form-control" id="dsc" placeholder="Описание" title="Enter description" type="text">
             </div>
             <div class="col">
-                <button class="btn btn-primary" onclick="return validate();" type="submit">Submit</button>
+                <button class="btn btn-primary" onclick="validate(); addRow()" type="button">Submit</button>
             </div>
         </div>
     </form>
     <p></p>
-    <table class="table">
+    <table class="table" id="myTable">
         <thead>
         <tr>
             <th scope="col">Имя</th>
@@ -74,22 +86,6 @@
         </thead>
         <tbody>
         <tr>
-            <th scope="row">1</th>
-            <td>Sample</td>
-            <td>Sample</td>
-            <td>Sample</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Sample</td>
-            <td>Sample</td>
-            <td>Sample</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Sample</td>
-            <td>Sample</td>
-            <td>Sample</td>
         </tr>
         </tbody>
     </table>
