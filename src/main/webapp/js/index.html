@@ -21,20 +21,24 @@
             var name = $('#name').val();
             if (name == '') {
                 alert($('#name').attr('title'));
+                return false;
             };
             var surname = $('#surname').val();
             if (surname == '') {
                 alert($('#surname').attr('title'));
+                return false;
             };
             var gender = $('#gender').val();
             if (gender == '') {
                 alert($('#gender').attr('title'));
+                return false;
             };
             var dsc = $('#dsc').val();
             if (dsc == '') {
                 alert($('#dsc').attr('title'));
+                return false;
             };
-            return false;
+            return true;
         }
     </script>
     <script>
@@ -70,7 +74,7 @@
                 <input class="form-control" id="dsc" placeholder="Описание" title="Enter description" type="text">
             </div>
             <div class="col">
-                <button class="btn btn-primary" onclick="validate(); addRow()" type="button">Submit</button>
+                <button class="btn btn-primary" onclick="if (validate()) addRow()" type="button">Submit</button>
             </div>
         </div>
     </form>
