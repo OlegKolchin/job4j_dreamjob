@@ -20,30 +20,51 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script>
-    function sendGreeting() {
-        var email = $('#email').val();
+    $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/dreamjob/greet',
-            data: 'name=' + email,
-            dataType: 'text'
-        }).done(function(data) {
-            $('#form').before(email);
-        }).fail(function(err){
-            alert(err);
+            dataType: 'json'
+        }).done(function (data) {
+            for (var email of data) {
+                $('#emailList li:last').append(`<li>${email.name}</li>`)
+            }
+        }).fail(function (err) {
+            console.log(err);
+        });
+    });
+    function sendGreeting() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/dreamjob/greet',
+            data: JSON.stringify({
+                name: $('#exampleInputEmail1').val()
+            }),
+            dataType: 'json'
+        }).done(function (data) {
+            $('#emailList li:last').append(`<li>${data.name}</li>`)
+        }).fail(function (err) {
+            console.log(err);
         });
     }
+
 </script>
 
 <body>
 <div class="container">
     <form>
-        <div class="form-group" id="form">
-            <label for="email" style="font-weight: bold">Email address</label>
-            <input aria-describedby="emailHelp" class="form-control" id="email" placeholder="Enter email" type="text">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input aria-describedby="emailHelp" class="form-control" id="exampleInputEmail1" placeholder="Enter email"
+                   type="email">
         </div>
         <button class="btn btn-primary" onclick="sendGreeting()" type="button">Submit</button>
     </form>
+    <br>
+    Почты:
+    <ul id="emailList">
+        <li></li>
+    </ul>
 </div>
 </body>
 </html>
