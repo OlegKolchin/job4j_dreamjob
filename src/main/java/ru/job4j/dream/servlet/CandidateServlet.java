@@ -15,13 +15,15 @@ public class CandidateServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         DbStore.instOf().save(
                 new Candidate(
-                        Integer.valueOf(req.getParameter("id")), req.getParameter("name")));
+                        Integer.parseInt(req.getParameter("id")), req.getParameter("name"),
+                        Integer.parseInt(req.getParameter("cityId"))));
         resp.sendRedirect(req.getContextPath() + "/candidates.do");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", DbStore.instOf().findAllCandidates());
+        req.setAttribute("cities", DbStore.instOf().findAllCities());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 }

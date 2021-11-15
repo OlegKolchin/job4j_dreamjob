@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.DbStore" %>
-<%@ page import="ru.job4j.dream.model.Candidate" %>
-<%@ page import="java.util.Collection" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -22,6 +19,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Работа мечты</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 </head>
 <body>
 <div class="container pt-3">
@@ -35,7 +33,8 @@
         <table class="table">
           <thead>
           <tr>
-            <th scope="col">Названия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Город</th>
             <th scope="col">Фотография</th>
           </tr>
           </thead>
@@ -49,12 +48,15 @@
                 <c:out value="${candidate.name}"/>
               </td>
               <td>
+                <c:out value='${cities[candidate.cityId - 1].name}'/>
+              </td>
+              <td>
                 <img src="<c:url value='/download?name=${candidate.id}.png'/>" width="100px" height="100px"/>
                 <a href="<c:url value='/photoupload.jsp?id=${candidate.id}'/>">Загрузить</a>
               </td>
               <td>
                 <form action="<c:url value='/delete?id=${candidate.id}'/>" method="post">
-                  <button type="submit" class="btn btn-primary">Удалить пользователя</button>
+                  <button type="submit" class="btn btn-primary">Удалить кандидата</button>
                 </form>
               </td>
             </tr>
@@ -64,6 +66,11 @@
       </div>
     </div>
   </div>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">На главную</a>
+    </li>
+  </ul>
 </div>
 </body>
 </html>

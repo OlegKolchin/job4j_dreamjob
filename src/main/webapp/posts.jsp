@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.DbStore" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
-<%@ page import="java.util.Collection" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -22,6 +19,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Работа мечты</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 </head>
 <body>
 <div class="container pt-3">
@@ -54,7 +52,11 @@
             </div>
         </div>
     </div>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">На главную</a>
+        </li>
+    </ul>
 </div>
-
 </body>
 </html>

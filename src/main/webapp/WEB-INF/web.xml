@@ -103,6 +103,15 @@
     <url-pattern>/greet</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>CityServlet</servlet-name>
+    <servlet-class>ru.job4j.dream.servlet.CityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CityServlet</servlet-name>
+    <url-pattern>/cities</url-pattern>
+  </servlet-mapping>
+
   <filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>ru.job4j.dream.filter.AuthFilter</filter-class>
@@ -110,7 +119,9 @@
 
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
+    <url-pattern>/post/edit.jsp</url-pattern><url-pattern>*.do</url-pattern>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>/candidate/edit.jsp</url-pattern>
   </filter-mapping>
 
 </web-app>

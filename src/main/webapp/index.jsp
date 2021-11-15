@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="ru.job4j.dream.store.DbStore" %>
-<%@ page import="ru.job4j.dream.model.Post" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<jsp:include page="/index.do" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,10 +19,11 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <title>Работа мечты</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row pt-3">
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
@@ -53,18 +53,44 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние вакансии.
-            </div>
-            <div class="card-body">
+                Вакансии за последние сутки
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${newPosts}" var="post">
+                            <tr>
+                                <td>
+                                    <c:out value="${post.name}"/>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row pt-3">
+    <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние кандидаты.
-            </div>
-            <div class="card-body">
+                Кандидаты за последние сутки
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${newCandidates}" var="candidate">
+                            <tr>
+                                <td>
+                                    <c:out value="${candidate.name}"/>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

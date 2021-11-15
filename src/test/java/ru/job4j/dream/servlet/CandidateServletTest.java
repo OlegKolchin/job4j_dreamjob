@@ -18,16 +18,6 @@ import static org.mockito.Mockito.when;
 import static org.hamcrest.Matchers.is;
 
 public class CandidateServletTest {
-    @Test
-    public void whenUpdatePost() throws ServletException, IOException {
-        HttpServletRequest req = mock(HttpServletRequest.class);
-        HttpServletResponse resp = mock(HttpServletResponse.class);
-        when(req.getParameter("id")).thenReturn("1");
-        when(req.getParameter("name")).thenReturn("name of the new Candidate");
-        new CandidateServlet().doPost(req, resp);
-        Candidate candidate = DbStore.instOf().findCandidateById(1);
-        assertThat(candidate.getName(), is("name of the new Candidate"));
-    }
 
     @Test
     public void whenCreatePost() throws ServletException, IOException {
@@ -35,6 +25,7 @@ public class CandidateServletTest {
         HttpServletResponse resp = mock(HttpServletResponse.class);
         when(req.getParameter("id")).thenReturn("0");
         when(req.getParameter("name")).thenReturn("name of the new Candidate2");
+        when(req.getParameter("cityId")).thenReturn("1");
         new CandidateServlet().doPost(req, resp);
         Collection<Candidate> candidates = DbStore.instOf().findAllCandidates();
         Optional<Candidate> candidate = candidates.stream()
@@ -43,4 +34,15 @@ public class CandidateServletTest {
         assertThat(candidate.get().getName(), is("name of the new Candidate2"));
     }
 
+    @Test
+    public void whenUpdatePost() throws ServletException, IOException {
+        HttpServletRequest req = mock(HttpServletRequest.class);
+        HttpServletResponse resp = mock(HttpServletResponse.class);
+        when(req.getParameter("id")).thenReturn("1");
+        when(req.getParameter("name")).thenReturn("name of the new Candidate");
+        when(req.getParameter("cityId")).thenReturn("1");
+        new CandidateServlet().doPost(req, resp);
+        Candidate candidate = DbStore.instOf().findCandidateById(1);
+        assertThat(candidate.getName(), is("name of the new Candidate"));
+    }
 }

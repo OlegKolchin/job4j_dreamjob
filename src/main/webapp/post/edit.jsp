@@ -20,6 +20,17 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <title>Работа мечты</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <script>
+        function validate() {
+            var name = $('#name').val();
+            if (name == '') {
+                alert($('#name').attr('title'));
+                return false
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 <%
@@ -36,20 +47,25 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 <% if (id == null) { %>
-                Новая вакансия.
+                Новая вакансия
                 <% } else { %>
-                Редактирование вакансии.
+                Редактирование вакансии
                 <% } %>
             </div>
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/posts.do?id=<%=post.getId()%>" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
+                        <input type="text" class="form-control" name="name" value="<%=post.getName()%>" id="name" title="Введите имя">
                     </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validate()">Сохранить</button>
                 </form>
             </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">На главную</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
